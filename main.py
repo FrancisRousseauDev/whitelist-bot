@@ -22,6 +22,9 @@ async def on_message(message):
                 result = readDatabase('check', message.author.id, message.content)
                 if len(result) > 0:
                     await message.channel.send('Your address is set: ' + str(result[0][0]))
+                    sleep(10)
+                    await message.channel.purge(limit=1000000)
+                    await message.channel.send(getHelpMessage())
                 else:
                     await message.channel.send('No address set yet.')
             elif str('>>set') in message.content:
@@ -51,8 +54,10 @@ async def on_message(message):
                 else:
                     if len(token) > 25:
                         readDatabase('update', message.author.id, token)
-
-
+                        await message.channel.send('Address is updated! Use **>>check** to verify!')
+                        sleep(5)
+                        await message.channel.purge(limit=1000000)
+                        await message.channel.send(getHelpMessage())
                     else:
                         await message.channel.send('Not a valid token address!')
 
