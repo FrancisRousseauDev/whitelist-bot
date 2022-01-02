@@ -27,9 +27,11 @@ async def on_message(message):
                 result = readDatabase('check', message.author.id, message.content)
                 token = message.content.replace('>>set ', '')
                 if len(result) == 1:
+                    await message.channel.purge(limit=1)
                     await message.channel.send('Sorry! There is already set an address for this user.')
                 else:
                     if len(token) > 25:
+                        await message.channel.purge(limit=1)
                         readDatabase('set', message.author.id, token)
                         await message.channel.send('Address is set! Use **>>check** to verify!')
                     else:
