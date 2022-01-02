@@ -65,16 +65,16 @@ def getHelpMessage():
     welcomeMessage = f"\nWelcome to the Whitelist bot!\n" \
                      "**Commands**\n" \
                      "```>>info                : why is this BOT here?\n" \
-                     ">>check               : will return the current token saved for your current ID\n" \
-                     ">>set <token>         : will set the token for your current ID\n" \
-                     ">>update <token>      : will update your token\n```"
+                     ">>check               : will return the current address saved for your current discord ID\n" \
+                     ">>set <token>         : will set the address for your current ID\n" \
+                     ">>update <token>      : will update your address\n```"
 
     return welcomeMessage
 
 
 def getInfoMessage():
     infoMessage = f"```This bot is made to set all whitelist addresses so you can get access to our presale of the VeeParrots-NFT collection.\n" \
-                  "If you don't set a valid token, you will not be able to mint NFT's in our presale.```"
+                  "If you don't set a valid address, you will not be able to mint NFT's in our presale.```"
     return infoMessage
 
 
