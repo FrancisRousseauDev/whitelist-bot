@@ -2,6 +2,7 @@ import psycopg2
 import os
 from discord.ext import commands
 import discord
+from time import sleep
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -27,13 +28,18 @@ async def on_message(message):
                 result = readDatabase('check', message.author.id, message.content)
                 token = message.content.replace('>>set ', '')
                 if len(result) == 1:
-                    await message.channel.purge(limit=1)
                     await message.channel.send('Sorry! There is already set an address for this user.')
+                    sleep(10)
+                    await message.channel.purge(limit=1000000)
+                    await message.channel.send(getHelpMessage())
                 else:
                     if len(token) > 25:
                         await message.channel.purge(limit=1)
                         readDatabase('set', message.author.id, token)
                         await message.channel.send('Address is set! Use **>>check** to verify!')
+                        sleep(7)
+                        await message.channel.purge(limit=1000000)
+                        await message.channel.send(getHelpMessage())
                     else:
                         await message.channel.send('Not a valid token address!')
 
