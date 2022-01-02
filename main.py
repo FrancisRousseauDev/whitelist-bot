@@ -7,18 +7,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 client = discord.Client()
+
+
 @client.event
 async def on_message(message):
     if message.guild:
-        if not str('923579001010794527') in str(message.author.id) \
-                and (message.content == '>>help' \
-                or message.content == '>>info' \
-                or message.content == '>>check' or\
-                message.content == '>>set'):
-            print(message.author.id)
-            await message.channel.send(f"<@{message.author.id}>, please send me a private message...")
-
-    else:
         if not str('923579001010794527') in str(message.author.id):
             if message.content == '>>help':
                 await message.channel.send(getHelpMessage())
@@ -54,8 +47,6 @@ async def on_message(message):
 
                     else:
                         await message.channel.send('Not a valid token address!')
-
-
 
 def getHelpMessage():
     welcomeMessage = f"\nWelcome to the Whitelist bot!\n" \
@@ -108,7 +99,6 @@ def readDatabase(type, value, value2):
             cursor.execute(postgres_insert_query, record_to_insert)
             connection.commit()
             result = cursor.rowcount
-
 
         print('res', result)
         return result
