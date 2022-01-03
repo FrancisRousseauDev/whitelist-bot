@@ -13,7 +13,7 @@ client = discord.Client()
 @client.event
 async def on_message(message):
     print(message.channel.id)
-    print(message.channel == '927245506130878504')
+    print(message.channel.id == '927245506130878504')
     if message.guild:
         if not str('923579001010794527') in str(message.author.id):
             if message.content == '>>help':
