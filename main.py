@@ -12,6 +12,7 @@ client = discord.Client()
 
 @client.event
 async def on_message(message):
+    print(message.channel.id)
     print(message.channel == '🛠add-whitelist')
     if message.guild:
         if not str('923579001010794527') in str(message.author.id):
