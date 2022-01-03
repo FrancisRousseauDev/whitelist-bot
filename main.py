@@ -66,8 +66,8 @@ def getHelpMessage():
                      "**Commands**\n" \
                      "```>>info                : why is this BOT here?\n" \
                      ">>check               : will return the current address saved for your current discord ID\n" \
-                     ">>set <token>         : will set the address for your current ID\n" \
-                     ">>update <token>      : will update your address\n```"
+                     ">>set <address>         : will set the address for your current ID\n" \
+                     ">>update <address>      : will update your address\n```"
 
     return welcomeMessage
 
