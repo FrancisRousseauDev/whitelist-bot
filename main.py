@@ -14,11 +14,11 @@ client = discord.Client()
 async def on_message(message):
     if message.guild:
         if not str('923579001010794527') in str(message.author.id) and str(message.channel.id) == '927245506130878504':
-            if message.content == '>>help':
+            if message.content == '!!help':
                 await message.channel.send(getHelpMessage())
-            elif message.content == '>>info':
+            elif message.content == '!!info':
                 await message.channel.send(getInfoMessage())
-            elif message.content == '>>check':
+            elif message.content == '!!check':
                 result = readDatabase('check', message.author.id, message.content)
                 if len(result) > 0:
                     await message.channel.send('Your address is set: ' + str(result[0][0]))
@@ -27,9 +27,9 @@ async def on_message(message):
                     await message.channel.send(getHelpMessage())
                 else:
                     await message.channel.send('No address set yet.')
-            elif str('>>set') in message.content:
+            elif str('!!set') in message.content:
                 result = readDatabase('check', message.author.id, message.content)
-                token = message.content.replace('>>set ', '')
+                token = message.content.replace('!!set ', '')
                 if len(result) == 1:
                     await message.channel.send('Sorry! There is already set an address for this user.')
                     sleep(10)
@@ -39,18 +39,18 @@ async def on_message(message):
                     if len(token) > 25:
                         await message.channel.purge(limit=1)
                         readDatabase('set', message.author.id, token)
-                        await message.channel.send('Address is set! Use **>>check** to verify!')
+                        await message.channel.send('Address is set! Use **!!check** to verify!')
                         sleep(7)
                         await message.channel.purge(limit=1000000)
                         await message.channel.send(getHelpMessage())
                     else:
                         await message.channel.send('Not a valid token address!')
 
-            elif str('>>update') in message.content:
+            elif str('!!update') in message.content:
                 result = readDatabase('check', message.author.id, message.content)
-                token = message.content.replace('>>update ', '')
+                token = message.content.replace('!!update ', '')
                 if len(result) == 0:
-                    await message.channel.send('Sorry! There is no address for this account yet, use **>>set**')
+                    await message.channel.send('Sorry! There is no address for this account yet, use **!!set**')
                 else:
                     if len(token) > 25:
                         readDatabase('update', message.author.id, token)
@@ -64,10 +64,10 @@ async def on_message(message):
 def getHelpMessage():
     welcomeMessage = f"\nWelcome to the Whitelist bot!\n" \
                      "**Commands**\n" \
-                     "```>>info                : why is this BOT here?\n" \
-                     ">>check               : will return the current address saved for your current discord ID\n" \
-                     ">>set <address>         : will set the address for your current ID\n" \
-                     ">>update <address>      : will update your address\n```"
+                     "```!!info                : why is this BOT here?\n" \
+                     "!!check               : will return the current address saved for your current discord ID\n" \
+                     "!!set <address>         : will set the address for your current ID\n" \
+                     "!!update <address>      : will update your address\n```"
 
     return welcomeMessage
 
