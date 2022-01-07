@@ -29,6 +29,9 @@ async def on_message(message):
                     await message.channel.send('No address set yet.')
             elif str('!!set') in message.content:
                 await message.channel.send('Sorry! Whitelist is currently closed.')
+                sleep(7)
+                await message.channel.purge(limit=1000000)
+                await message.channel.send(getHelpMessage())
                 #result = readDatabase('check', message.author.id, message.content)
                 #token = message.content.replace('!!set ', '')
                 #if len(result) == 1:
