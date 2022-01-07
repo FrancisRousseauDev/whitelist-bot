@@ -28,29 +28,30 @@ async def on_message(message):
                 else:
                     await message.channel.send('No address set yet.')
             elif str('!!set') in message.content:
-                result = readDatabase('check', message.author.id, message.content)
-                token = message.content.replace('!!set ', '')
-                if len(result) == 1:
-                    await message.channel.send('Sorry! There is already set an address for this user.')
-                    sleep(10)
-                    await message.channel.purge(limit=1000000)
-                    await message.channel.send(getHelpMessage())
-                else:
-                    if len(token) > 25:
-                        await message.channel.purge(limit=1)
-                        readDatabase('set', message.author.id, token)
-                        await message.channel.send('Address is set! Use **!!check** to verify!')
-                        sleep(7)
-                        await message.channel.purge(limit=1000000)
-                        await message.channel.send(getHelpMessage())
-                    else:
-                        await message.channel.send('Not a valid token address!')
+                await message.channel.send('Sorry! Whitelist is currently closed.')
+                #result = readDatabase('check', message.author.id, message.content)
+                #token = message.content.replace('!!set ', '')
+                #if len(result) == 1:
+                #    await message.channel.send('Sorry! There is already set an address for this user.')
+                #    sleep(10)
+                #    await message.channel.purge(limit=1000000)
+                #    await message.channel.send(getHelpMessage())
+                #else:
+                #    if len(token) > 25:
+                #        await message.channel.purge(limit=1)
+                #        readDatabase('set', message.author.id, token)
+                #        await message.channel.send('Address is set! Use **!!check** to verify!')
+                #       sleep(7)
+                #       await message.channel.purge(limit=1000000)
+                #        await message.channel.send(getHelpMessage())
+                #    else:
+                #       await message.channel.send('Not a valid token address!')
 
             elif str('!!update') in message.content:
                 result = readDatabase('check', message.author.id, message.content)
                 token = message.content.replace('!!update ', '')
                 if len(result) == 0:
-                    await message.channel.send('Sorry! There is no address for this account yet, use **!!set**')
+                    await message.channel.send('Sorry! There is no address for this account yet.')
                 else:
                     if len(token) > 25:
                         readDatabase('update', message.author.id, token)
@@ -66,7 +67,7 @@ def getHelpMessage():
                      "**Commands**\n" \
                      "```!!info                : why is this BOT here?\n" \
                      "!!check               : will return the current address saved for your current discord ID\n" \
-                     "!!set <address>         : will set the address for your current ID\n" \
+                     "!!set <address>         : currently closed\n" \
                      "!!update <address>      : will update your address\n```"
 
     return welcomeMessage
