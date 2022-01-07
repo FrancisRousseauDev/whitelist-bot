@@ -68,9 +68,9 @@ async def on_message(message):
 def getHelpMessage():
     welcomeMessage = f"\nWelcome to the Whitelist bot!\n" \
                      "**Commands**\n" \
-                     "```!!info                : why is this BOT here?\n" \
-                     "!!check               : will return the current address saved for your current discord ID\n" \
-                     "!!set <address>         : currently closed\n" \
+                     "```!!info                  : why is this BOT here?\n" \
+                     "!!check                 : will return the current address saved for your current discord ID\n" \
+                     "!!set <address>         : whitelist is closed\n" \
                      "!!update <address>      : will update your address\n```"
 
     return welcomeMessage
